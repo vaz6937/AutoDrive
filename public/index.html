@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoDrive - Venda de Veículos</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-icon">🚗</span>
+        <div>
+          <h1>AutoDrive</h1>
+          <p>Sistema de Gestão e Venda de Veículos</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section class="hero">
+      <div>
+        <span class="tag">FULL STACK</span>
+        <h2>Veículos disponíveis</h2>
+        <p>Cadastre, consulte, edite e remova veículos através de uma API REST integrada ao MongoDB.</p>
+      </div>
+      <div class="status-box">
+        <span id="api-status" class="status-dot offline"></span>
+        <span id="api-status-text">Verificando API...</span>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <div class="section-heading">
+        <div>
+          <h3 id="form-title">Cadastrar veículo</h3>
+          <p>Preencha os campos obrigatórios para anunciar um veículo.</p>
+        </div>
+      </div>
+
+      <div id="mensagem" class="message hidden" role="alert"></div>
+
+      <form id="form-veiculo">
+        <input type="hidden" id="veiculo-id">
+
+        <div class="row">
+          <div class="six columns">
+            <label for="marca">Marca *</label>
+            <input class="u-full-width" type="text" id="marca" name="marca" required maxlength="80" placeholder="Ex.: Toyota">
+          </div>
+
+          <div class="six columns">
+            <label for="modelo">Modelo *</label>
+            <input class="u-full-width" type="text" id="modelo" name="modelo" required maxlength="80" placeholder="Ex.: Corolla">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="four columns">
+            <label for="ano">Ano *</label>
+            <input class="u-full-width" type="number" id="ano" name="ano" min="1900" required placeholder="2026">
+          </div>
+
+          <div class="four columns">
+            <label for="preco">Preço (R$) *</label>
+            <input class="u-full-width" type="number" id="preco" name="preco" min="0.01" step="0.01" required placeholder="120000">
+          </div>
+
+          <div class="four columns">
+            <label for="cor">Cor *</label>
+            <input class="u-full-width" type="text" id="cor" name="cor" required maxlength="40" placeholder="Ex.: Preto">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="six columns">
+            <label for="imagemUrl">URL da imagem *</label>
+            <input class="u-full-width" type="url" id="imagemUrl" name="imagemUrl" required placeholder="https://exemplo.com/carro.jpg">
+          </div>
+
+          <div class="six columns">
+            <label for="descricao">Descrição</label>
+            <input class="u-full-width" type="text" id="descricao" name="descricao" maxlength="500" placeholder="Detalhes adicionais do veículo">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="button-primary" type="submit" id="btn-cadastrar">Cadastrar veículo</button>
+          <button class="button-secondary hidden" type="button" id="btn-cancelar">Cancelar edição</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <div class="section-heading list-heading">
+        <div>
+          <h3>Veículos cadastrados</h3>
+          <p id="contador">Carregando...</p>
+        </div>
+        <button type="button" class="button-secondary" id="btn-atualizar">Atualizar lista</button>
+      </div>
+
+      <div id="lista-veiculos" class="vehicle-grid"></div>
+
+      <div id="estado-vazio" class="empty-state hidden">
+        <div class="empty-icon">🚘</div>
+        <h4>Nenhum veículo cadastrado</h4>
+        <p>Cadastre o primeiro veículo usando o formulário acima.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>AutoDrive • Projeto acadêmico Full Stack • Node.js + Express + MongoDB + Skeleton + Cypress</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
